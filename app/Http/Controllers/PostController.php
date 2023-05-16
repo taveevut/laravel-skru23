@@ -13,4 +13,16 @@ class PostController extends Controller
 
     return view('post.index', $data);
   }
+
+  public function create()
+  {
+    return view('post.create');
+  }
+
+  public function store(Request $request)
+  {
+    Post::create($request->all());
+
+    return redirect()->route('post.index');
+  }
 }
