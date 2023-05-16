@@ -10,9 +10,18 @@
 
 <body>
 		<h1>[POST] Index page</h1>
-		<h2>Title: {{ $name }}</h2>
-		<h2>Email: {{ $email }}</h2>
-		<h2>Visite site: <a href="{{ $site }}" target="_blink">{{ $site }}</a></h2>
+		<table>
+				<tr>
+						<th>หัวข้อ</th>
+						<th>#</th>
+				</tr>
+				@foreach ($posts as $value)
+						<tr>
+								<td>{{ $value->title }}</td>
+								<td>#</td>
+						</tr>
+				@endforeach
+		</table>
 </body>
 
 </html>
