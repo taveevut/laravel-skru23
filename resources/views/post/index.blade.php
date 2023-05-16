@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends ('post.layout.main')
 
-<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Document</title>
-</head>
+@section('content')
+		<div class="row justify-content-center">
+				<div class="col-md-8">
+						<div class="my-3">
+								<a class="btn btn-sm btn-outline-primary" href="{{ route('post.create') }}">+ สร้างรายการ</a>
+						</div>
 
-<body>
-		<h1>[POST] Index page</h1>
-		<a href="{{ route('post.create') }}">สร้างรายการ</a>
-		<table>
-				<tr>
-						<th>หัวข้อ</th>
-						<th>#</th>
-				</tr>
-				@foreach ($posts as $value)
-						<tr>
-								<td>{{ $value->title }}</td>
-								<td class="text-wrap">
-										<a href="{{ route('post.edit', $value->id) }}">แก้ไข</a>
-										<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')" style="display: contents;">
-												@csrf
-												{{ method_field('DELETE') }}
-												<button type="submit">ลบ</button>
-										</form>
-								</td>
-						</tr>
-				@endforeach
-		</table>
-</body>
-
-</html>
+						<table class="table-condensed table-hover table">
+								<tr>
+										<th>หัวข้อ</th>
+										<th>#</th>
+								</tr>
+								@foreach ($posts as $value)
+										<tr>
+												<td>{{ $value->title }}</td>
+												<td width="1" class="text-nowrap">
+														<a class="btn btn-sm btn-info" href="{{ route('post.edit', $value->id) }}">แก้ไข</a>
+														<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')" style="display: contents;">
+																@csrf
+																{{ method_field('DELETE') }}
+																<button class="btn btn-sm btn-danger" type="submit">ลบ</button>
+														</form>
+												</td>
+										</tr>
+								@endforeach
+						</table>
+				</div>
+		</div>
+@endsection
