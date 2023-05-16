@@ -25,4 +25,12 @@ class PostController extends Controller
 
     return redirect()->route('post.index');
   }
+
+  public function destroy(Request $request, $id)
+  {
+    $post = Post::find($id);
+    $post->delete();
+
+    return redirect()->route('post.index');
+  }
 }

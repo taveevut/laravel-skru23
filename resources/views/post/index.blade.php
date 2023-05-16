@@ -10,6 +10,7 @@
 
 <body>
 		<h1>[POST] Index page</h1>
+		<a href="{{ route('post.create') }}">สร้างรายการ</a>
 		<table>
 				<tr>
 						<th>หัวข้อ</th>
@@ -18,7 +19,13 @@
 				@foreach ($posts as $value)
 						<tr>
 								<td>{{ $value->title }}</td>
-								<td>#</td>
+								<td>
+										<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')">
+												@csrf
+												{{ method_field('DELETE') }}
+												<button type="submit">ลบ</button>
+										</form>
+								</td>
 						</tr>
 				@endforeach
 		</table>
