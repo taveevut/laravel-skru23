@@ -19,8 +19,9 @@
 				@foreach ($posts as $value)
 						<tr>
 								<td>{{ $value->title }}</td>
-								<td>
-										<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')">
+								<td class="text-wrap">
+										<a href="{{ route('post.edit', $value->id) }}">แก้ไข</a>
+										<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')" style="display: contents;">
 												@csrf
 												{{ method_field('DELETE') }}
 												<button type="submit">ลบ</button>
