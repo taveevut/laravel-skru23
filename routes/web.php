@@ -15,15 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+  return view('welcome');
+});
 
 Route::get('/user', [UserController::class, 'index']);
 
-Route::get('/post', [PostController::class, 'index'])->name('post.index');
-Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
-Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
-Route::get('/post/{post}', [PostController::class, 'edit'])->name('post.edit');
-Route::put('/post/{post}', [PostController::class, 'update'])->name('post.update');
+Route::middleware('auth')->group(function () {
+  Route::get('/post', [PostController::class, 'index'])->name('post.index');
+  Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+  Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
+  Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+  Route::get('/post/{post}', [PostController::class, 'edit'])->name('post.edit');
+  Route::put('/post/{post}', [PostController::class, 'update'])->name('post.update');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
