@@ -7,29 +7,31 @@
 								<a class="btn btn-sm btn-outline-primary" href="{{ route('post.create') }}">+ สร้างรายการ</a>
 						</div>
 
-						<table class="table-condensed table-hover table">
-								<tr>
-										<th>#</th>
-										<th>หัวข้อ</th>
-										<th>#</th>
-								</tr>
-								@foreach ($posts as $index => $value)
+						<div class="table-responsive">
+								<table class="table-condensed table-hover table">
 										<tr>
-												<td>{{ $posts->firstItem() + $index }}</td>
-												<td>{{ $value->title }}</td>
-												<td width="1" class="text-nowrap">
-														<a class="btn btn-sm btn-info" href="{{ route('post.edit', $value->id) }}">แก้ไข</a>
-														<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')" style="display: contents;">
-																@csrf
-																{{ method_field('DELETE') }}
-																<button class="btn btn-sm btn-danger" type="submit">ลบ</button>
-														</form>
-												</td>
+												<th>#</th>
+												<th>หัวข้อ</th>
+												<th>#</th>
 										</tr>
-								@endforeach
-						</table>
+										@foreach ($posts as $index => $value)
+												<tr>
+														<td>{{ $posts->firstItem() + $index }}</td>
+														<td>{{ $value->title }}</td>
+														<td width="1" class="text-nowrap">
+																<a class="btn btn-sm btn-info" href="{{ route('post.edit', $value->id) }}">แก้ไข</a>
+																<form method="POST" action="{{ route('post.destroy', $value->id) }}" onsubmit="return confirm('คุณต้องการลบรายนี้ใช่หรือไม่ ?')" style="display: contents;">
+																		@csrf
+																		{{ method_field('DELETE') }}
+																		<button class="btn btn-sm btn-danger" type="submit">ลบ</button>
+																</form>
+														</td>
+												</tr>
+										@endforeach
+								</table>
 
-            {!! $posts->links() !!}
+                {!! $posts->links() !!}
+						</div>
 				</div>
 		</div>
 @endsection
