@@ -34,6 +34,13 @@
 												<input class="form-control me-2" type="password" name="password" placeholder="ระบุรหัสผ่าน" required>
 												<button class="btn btn-outline-success text-nowrap" type="submit">เข้าสู่ระบบ</button>
 										</form>
+										<ul class="navbar-nav me-e mb-lg-0 mb-2">
+												<li class="nav-item">
+														<a class="nav-link" href="{{ route('register') }}">
+																สมัครสมาชิก
+														</a>
+												</li>
+										</ul>
 								@else
 										<ul class="navbar-nav me-e mb-lg-0 mb-2">
 												<li class="nav-item">
