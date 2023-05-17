@@ -9,11 +9,13 @@
 
 						<table class="table-condensed table-hover table">
 								<tr>
+										<th>#</th>
 										<th>หัวข้อ</th>
 										<th>#</th>
 								</tr>
-								@foreach ($posts as $value)
+								@foreach ($posts as $index => $value)
 										<tr>
+												<td>{{ $posts->firstItem() + $index }}</td>
 												<td>{{ $value->title }}</td>
 												<td width="1" class="text-nowrap">
 														<a class="btn btn-sm btn-info" href="{{ route('post.edit', $value->id) }}">แก้ไข</a>
@@ -26,6 +28,8 @@
 										</tr>
 								@endforeach
 						</table>
+
+            {!! $posts->links() !!}
 				</div>
 		</div>
 @endsection
